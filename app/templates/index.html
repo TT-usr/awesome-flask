@@ -1,1 +1,29 @@
-{{ text }}
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<table class="table">
+	<thead>
+		<tr>content</tr>
+		<tr>Time</tr>
+		<tr>Status</tr>
+	</thead>
+
+	{% for t in todos %}
+
+	<tbody>
+		<td>{{ t.content }}</td>
+		<td>{{ t.time }}</td>
+		<td>{{ t.status }}</td>
+	</tbody>
+
+	{% endfor %}
+</table>
+
+</body>
+</html>
+
+
