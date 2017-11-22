@@ -3,3 +3,4 @@ flask-mongoengine
 Flask-Script
 Flask-moment
 Flask-bootstrap
+Flask-wtf

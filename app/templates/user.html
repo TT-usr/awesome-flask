@@ -12,6 +12,7 @@
  		<h4>
  			{# 根据客户端电脑中的时区和区域设置渲染日期和时间 #}
  			{# moment 相关文档 http://momentjs.com/docs/#/displaying/ #}
+ 			{{ moment.lang('cn') }}
  			The local date and time is {{ moment(current_time).format('LLL') }}.
  		</h4>
 
