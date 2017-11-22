@@ -7,8 +7,17 @@ from app.models import Todo, TodoForm
 from flask import request, current_app, make_response, redirect, abort
 # 导入 bootstrap
 from flask_bootstrap import Bootstrap
+# 导入 Moment( 格式化时间 )
+from flask_moment import Moment
+from datetime import datetime
 
 bootstrap = Bootstrap(app)
+moment = Moment(app)
+
+@app.route('/time')
+def time():
+	return render_template('user.html', current_time = datetime.utcnow())
+
 
 # 动态路由
 @app.route('/user/<name>')
@@ -39,6 +48,14 @@ def user(name):
 	# abort(404)
 
 	return render_template('user.html',name=name)
+
+@app.errorhandler(404)
+def page_not_found(e):
+	return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def page_not_found(e):
+	return render_template('500.html'), 500
 
 
 @app.route('/')

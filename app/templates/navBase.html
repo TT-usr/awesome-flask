@@ -1,0 +1,73 @@
+{# extends 指令从 Flask-Bootstrap 中导入 bootstrap/base.html #}
+
+{# Flask-Bootstrap基模板中定义的块
+	doc 整个 HTML 文档
+	html_attribs <html> 标签的属性
+	html <html> 标签中的内容
+	head <head> 标签中的内容
+	title <title> 标签中的内容
+	metas 一组 <meta> 标签
+	styles 层叠样式表定义
+	body_attribs <body> 标签的属性
+	body <body> 标签中的内容
+	navbar 用户定义的导航条
+	content 用户定义的页面内容
+	scripts 文档底部的 JavaScript 声明
+ #}
+
+
+{% extends "bootstrap/base.html" %} 
+
+{% block title %}Flasky{% endblock %} 
+
+{% block head %}
+
+    {{ super() }}
+    {# 加载 favicon.ico #}
+    <link rel="shortcut icon" 
+    href="{{ url_for('static', filename = 'favicon.ico') }}" 
+    type="image/x-icon">
+
+    <link rel="icon" 
+    href="{{ url_for('static', filename = 'favicon.ico') }}"
+    type="image/x-icon">
+
+{% endblock %}
+
+{% block navbar %}
+
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Flasky</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %} 
+
+{% block content %}
+<div class="container">
+    {% block page_content %}
+    {% endblock %}
+</div>
+{% endblock %}
+
+{# 导入 moment 和 jQuery #}
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+{% endblock %}
+
+
+
