@@ -13,3 +13,24 @@
 ###运行项目
 `python manage.py runserver`
 
+```
+optional arguments:
+
+ -h, --help 
+ 
+ -t HOST, --host HOST
+ 
+ -p PORT, --port PORT
+ 
+ --threaded
+ 
+ --processes PROCESSES
+ 
+ --passthrough-errors
+ 
+ -d, --no-debug
+ 
+ -r, --no-reload
+ 
+```
+
