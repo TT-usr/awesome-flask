@@ -4,7 +4,20 @@
 
 </head>
 <body>
+{# 
 
+导入模板
+{% import 'name.html' as xxx %}
+
+类似于宏定义
+{% macro action(name)%}
+	操作
+{% endmacro %}
+
+需要在多处重复使用的模板代码片段可以写入单独的文件，再包含在所有模板中，以避免重复：
+{% include 'common.html' %}
+
+ #}
 <table class="table">
 	<thead>
 		<tr>
@@ -28,20 +41,34 @@
 			{% endif %}	
 			
 			<a href="/delete/{{ t.id }}" class="btn btn-danger">Delete</a>
-			
+
 		</td>
 	</tbody>
 
 	{% endfor %}
 </table>
+{# 	Jinja2的部分常用过滤器:(使用方法 {{ obj|option }})
 
+	safe 渲染值时不转义
+	capitalize 把值的首字母转换成大写，其他字母转换成小写
+	lower 把值转换成小写形式
+	upper 把值转换成大写形式
+	title 把值中每个单词的首字母都转换成大写
+	trim 把值的首尾空格去掉
+	striptags 渲染之前把值中所有的 HTML 标签都删掉
+ #}
 
 <form class="input-group" action="/add", method="POST">
-	<input type="form-control" name="content" id="content" type="text" value="">
+	{{ form.hidden_tag() }}
+	{{ form.content(class='form-control') }}
 	<span class="input-group-btn">
 		<button class="btn btn-primary" type="submit">添加</button>
 	</span>
 </form>
+
+{% for error in form.errors.content %}
+<div class="flash alert-danger"><span>{{ error }}</span></div>
+{% endfor %}
 
 </body>
 </html>
