@@ -18,3 +18,33 @@ def add():
 	todo.save()
 	todos = Todo.objects.all()
 	return render_template('index.html', todos=todos)
+
+@app.route('/done/<string:todo_id>', methods=['POST',])
+def done(todo_id):
+	todo = Todo.objects.get_or_404(id=todo_id)
+	todo.status = 1
+	todo.save()
+	todos = Todo.objects.all()
+	return render_template('index.html',todos=todos)
+
+@app.route('/undone/<string:todo_id>', methods=['POST',])
+def undone(todo_id):
+	todo = Todo.objects.get_or_404(id=todo_id)
+	todo.status = 0
+	todo.save()
+	todos = Todo.objects.all()
+	return render_template('index.html',todos=todos)
+
+@app.route('/delete/<string:todo_id>')
+def delete(todo_id):
+	todo = Todo.objects.get_or_404(id=todo_id)
+	todo.delete()
+	todos = Todo.objects.all()
+	return render_template('index.html', todos=todos)
+
+
+
+
+
+
+

@@ -7,9 +7,12 @@
 
 <table class="table">
 	<thead>
-		<tr>content</tr>
-		<tr>Time</tr>
-		<tr>Status</tr>
+		<tr>
+			<td>Content</td>
+			<td>Time</td>
+			<td>Opration</td>
+		</tr>
+		
 	</thead>
 
 	{% for t in todos %}
@@ -17,7 +20,16 @@
 	<tbody>
 		<td>{{ t.content }}</td>
 		<td>{{ t.time }}</td>
-		<td>{{ t.status }}</td>
+		<td>
+			{% if t.status == 0 %}
+				<a href="/done/{{ t.id }}" method="POST" class="btn btn-primary">Done</a>
+			{% else %}
+				<a href="/done/{{ t.id }}" method="POST" class="btn btn-primary">Undo</a>
+			{% endif %}	
+			
+			<a href="/delete/{{ t.id }}" class="btn btn-danger">Delete</a>
+			
+		</td>
 	</tbody>
 
 	{% endfor %}
@@ -25,7 +37,7 @@
 
 
 <form class="input-group" action="/add", method="POST">
-	<input type="form-control" name="content" id='content' type="text" value="">
+	<input type="form-control" name="content" id="content" type="text" value="">
 	<span class="input-group-btn">
 		<button class="btn btn-primary" type="submit">添加</button>
 	</span>
