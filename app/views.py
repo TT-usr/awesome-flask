@@ -2,17 +2,36 @@
 
 from app import app
 from flask import render_template
-from app.models import Todo, TodoForm
+from app.models import Todo, TodoForm, NameForm
 # 这个包还得导入,日了蛋
-from flask import request, current_app, make_response, redirect, abort
+from flask import request, current_app, make_response, redirect, abort, jsonify
 # 导入 bootstrap
 from flask_bootstrap import Bootstrap
 # 导入 Moment( 格式化时间 )
 from flask_moment import Moment
 from datetime import datetime
+import json
+
 
 bootstrap = Bootstrap(app)
 moment = Moment(app)
+
+@app.route('/form', methods=['GET','POST'])
+def form():
+	name = None
+	form = NameForm()
+	if form.validate_on_submit():
+		name = form.name.data
+		form.name.data = ''
+	return render_template('form.html', name = name, form = form)
+
+@app.route('/json')
+def jsonSomething():
+	'''返回 json'''
+	a = [{"name" : "value", "haha" : "lalal" },{'name' : 'fuck'}]
+	return jsonify(a)
+
+
 
 @app.route('/time')
 def time():
